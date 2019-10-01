@@ -4533,11 +4533,11 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127773472}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 9fa8fdf21feb5ba41b219aa5b1de2caf, type: 3}
   m_Controller: {fileID: 9100000, guid: f7f5ee5bd32c5e047a7fa3a69ebd187b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -12879,6 +12879,10 @@ PrefabInstance:
       propertyPath: m_Animations.Array.data[7]
       value: 
       objectReference: {fileID: 7400000, guid: 9fa8fdf21feb5ba41b219aa5b1de2caf, type: 3}
+    - target: {fileID: 11100000, guid: 9fa8fdf21feb5ba41b219aa5b1de2caf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400108, guid: 9fa8fdf21feb5ba41b219aa5b1de2caf, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.06

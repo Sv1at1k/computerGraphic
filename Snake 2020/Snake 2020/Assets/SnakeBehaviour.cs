@@ -14,9 +14,41 @@ public class SnakeBehaviour : MonoBehaviour
     void Update()
     {
         bool isWalkingPressed = Input.GetKey("w");
-        m_animator.SetBool("isWalking",isWalkingPressed);
+        bool isLeftPressed = Input.GetKey("a");
+        bool isRightPressed = Input.GetKey("d");
+        bool isAtackPressed = Input.GetKey("space");
+       
+    
+        if(isWalkingPressed || isLeftPressed ||isRightPressed){
+                 m_animator.SetBool("isWalking",true);
+        }else {
 
-         bool isAtackPressed = Input.GetKey("space");
-        m_animator.SetBool("isAtacking",isAtackPressed);
+             m_animator.SetBool("isWalking",false);
+        }
+      
+        if (isWalkingPressed)
+        {
+           
+           
+        }
+        if (isLeftPressed)
+        {
+           
+           
+        }
+        if (isRightPressed)
+        {   
+            
+            
+             
+        }
+        if (isAtackPressed)
+        { m_animator.SetBool("isAtacking",true);
+
+        }else {
+              m_animator.SetBool("isAtacking",false);
+
+        }
+       
 }
 }

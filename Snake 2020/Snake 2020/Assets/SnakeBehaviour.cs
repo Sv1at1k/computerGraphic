@@ -17,36 +17,43 @@ public class SnakeBehaviour : MonoBehaviour
     bool isRightPressed;
     bool isAtackPressed;
 
+   
+
     float speed = 1;
 
     public Rigidbody rb;
 
-    //  void OnCollisionEnter(Collision collisionInfo)
-    // {
-    //     if (collisionInfo.gameObject.name == "Walls")
-    //     {    Time.timeScale = 0;
-    //          isDead = true;
-
-    //     }else {
-
-    //         isDead = false;
-    //     }
-    // }
-    void Start()
+     void OnCollisionEnter(Collision colider)
     {
+        var fullname =colider.gameObject.name;
+        var  name = fullname.Substring(0, 4);
+       
+        if (name == "Cube")
+        {  
+          
+            m_animator.SetBool("isDead", true);
+              isDead = true;
+
+        }
+    }
+    void Start()
+    {   var boxCollider = gameObject.AddComponent<BoxCollider>();
+        boxCollider.isTrigger = true;
         rb = GetComponent<Rigidbody>();
         m_animator = GetComponent<Animator>();
 
     }
 
     void FixedUpdate()
-    {
+    {   
         // float moveHoriontal = Input.GetAxis("Horizontal");
         // float moveVertical = Input.GetAxis("Vertical");
         // Vector3 movement = new Vector3(moveHoriontal, 0, moveVertical);
         // rb.AddForce(movement * speed);
+       if(!isDead){
         moveAnimation();
         move();
+       }
     }
 
     private void move()

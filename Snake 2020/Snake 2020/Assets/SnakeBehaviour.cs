@@ -7,57 +7,83 @@ using UnityEngine.AI;
 
 public class SnakeBehaviour : MonoBehaviour
 {
-
     Animator m_animator;
-    
-  
 
-    private float moveSpeed = 1;
+
+    private bool isGameOver;
+    private bool isDead;
+    bool isWalkingPressed;
+    bool isLeftPressed;
+    bool isRightPressed;
+    bool isAtackPressed;
+
+    float speed = 1;
+
+    public Rigidbody rb;
+
+    //  void OnCollisionEnter(Collision collisionInfo)
+    // {
+    //     if (collisionInfo.gameObject.name == "Walls")
+    //     {    Time.timeScale = 0;
+    //          isDead = true;
+
+    //     }else {
+
+    //         isDead = false;
+    //     }
+    // }
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         m_animator = GetComponent<Animator>();
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
-
-
-
-
-
-
-        move();
+        // float moveHoriontal = Input.GetAxis("Horizontal");
+        // float moveVertical = Input.GetAxis("Vertical");
+        // Vector3 movement = new Vector3(moveHoriontal, 0, moveVertical);
+        // rb.AddForce(movement * speed);
         moveAnimation();
-
-
-
-
+        move();
     }
+
     private void move()
     {
-        if (Input.GetKey(KeyCode.A))
+
+        Vector3 movement = new Vector3();
+
+        if (isWalkingPressed)
         {
-            transform.Rotate(0, -5, 0);
+           // movement = new Vector3(0, 0, 10);
+            transform.position += transform.forward * speed;
+            rb.MovePosition(transform.position  * Time.fixedDeltaTime);
+
+
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (isRightPressed)
         {
-            transform.position += transform.forward * moveSpeed;
+            movement = new Vector3(0, 79, 0);
+            Quaternion deltaRotation = Quaternion.Euler(movement * Time.deltaTime);
+            rb.MoveRotation(rb.rotation * deltaRotation);
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (isLeftPressed)
         {
-            transform.Rotate(0, 5, 0);
+            movement = new Vector3(0, -79, 0);
+            Quaternion deltaRotation = Quaternion.Euler(movement * Time.deltaTime);
+            rb.MoveRotation(rb.rotation * deltaRotation);
         }
 
     }
     private void moveAnimation()
     {
-        bool isWalkingPressed = Input.GetKey("w");
-        bool isLeftPressed = Input.GetKey("a");
-        bool isRightPressed = Input.GetKey("d");
-        bool isAtackPressed = Input.GetKey("space");
+        isWalkingPressed = Input.GetKey("w");
+        isLeftPressed = Input.GetKey("a");
+        isRightPressed = Input.GetKey("d");
+        isAtackPressed = Input.GetKey("space");
 
 
         if (isWalkingPressed || isLeftPressed || isRightPressed)
@@ -78,6 +104,13 @@ public class SnakeBehaviour : MonoBehaviour
             m_animator.SetBool("isAtacking", false);
 
         }
+
+
+
+    }
+
+    private void endGame()
+    {
 
 
 

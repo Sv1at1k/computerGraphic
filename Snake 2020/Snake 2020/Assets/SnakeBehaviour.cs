@@ -5,11 +5,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-
 public class SnakeBehaviour : MonoBehaviour
 {
     Animator m_animator;
-    private bool isGameOver;
     private bool isDead;
     bool isWalkingPressed;
     bool isLeftPressed;
@@ -26,7 +24,6 @@ public class SnakeBehaviour : MonoBehaviour
     {
         var fullname = colider.gameObject.name;
         var name = fullname.Substring(0, 4);
-
         if (name == "Cube")
         {
             lifes--;
@@ -62,7 +59,6 @@ public class SnakeBehaviour : MonoBehaviour
     {
         if (!isDead)
         {
-
             moveAnimation();
             move();
         }
@@ -70,14 +66,11 @@ public class SnakeBehaviour : MonoBehaviour
 
     void Update(){
         getLifes();
-
     }
 
     private void move()
-    {   
-
+    {  
         Vector3 movement = new Vector3();
-
         if (isWalkingPressed)
         {
             transform.position += transform.forward * speed;
@@ -104,8 +97,7 @@ public class SnakeBehaviour : MonoBehaviour
         isLeftPressed = Input.GetKey("a");
         isRightPressed = Input.GetKey("d");
         isAtackPressed = Input.GetKey("space");
-
-
+       
         if (isWalkingPressed || isLeftPressed || isRightPressed)
         {
             m_animator.SetBool("isWalking", true);
